@@ -9,16 +9,16 @@ use Daviidxo\AdventOfCode\SolutionBase;
 class Day01Solution extends SolutionBase
 {
 
-    public function getSolution(string $filePath): array
+    /**
+     * {@inheritdoc}
+     */
+    public function getSolution(string $input): array
     {
-        $data = file($filePath, FILE_IGNORE_NEW_LINES);
-
-        $fuelNeeded = $this->getTaskA($data);
-        $allFuelNeeded = $this->getTaskB($data);
+        $data = file($input, FILE_IGNORE_NEW_LINES);
 
         return [
-            'taskA' => $fuelNeeded,
-            'taskB' => $allFuelNeeded,
+            'taskA' => $this->getTaskA($data),
+            'taskB' => $this->getTaskB($data),
         ];
     }
 
