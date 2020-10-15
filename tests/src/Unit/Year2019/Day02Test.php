@@ -66,32 +66,4 @@ class Day02Test extends TestCase
 
         static::assertSame($expected, $actual);
     }
-
-//    public function casesTaskB(): array
-//    {
-//        return [
-//            'example 1' => [
-//                2,
-//                [14],
-//            ],
-//            'example 2' => [
-//                966,
-//                [1969],
-//            ],
-//            'example 3' => [
-//                50346,
-//                [100756],
-//            ],
-//        ];
-//    }
-//
-//    /**
-//     * @dataProvider casesTaskB
-//     */
-//    public function testTaskB(int $expected, array $data)
-//    {
-//        $actual = (new Day01Solution())->getTaskB($data);
-//
-//        static::assertSame($expected, $actual);
-//    }
 }
