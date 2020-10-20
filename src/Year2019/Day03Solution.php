@@ -25,11 +25,13 @@ class Day03Solution extends SolutionBase
 
     public function getTaskA(array $wires): int
     {
-        $manhattans = [];
-        $intersections = $this->getIntersections($wires)['intersections'];
+        $panel = $this->getPanel($wires);
+        $intersections = array_intersect_key($panel[0], $panel[1]);
 
-        foreach ($intersections as $intersection) {
-            $manhattans[] = abs($intersection[0]) + abs($intersection[1]);
+        $manhattans = [];
+        foreach ($intersections as $key => $intersection) {
+            $positions = explode(',', $key);
+            $manhattans[] = abs($positions[0]) + abs($positions[1]);
         }
 
         return min($manhattans);
@@ -37,28 +39,23 @@ class Day03Solution extends SolutionBase
 
     public function getTaskB(array $wires): int
     {
-        $data = $this->getIntersections($wires);
-        $panel = $data['panel'];
-        $intersections = $data['intersections'];
+        $panel = $this->getPanel($wires);
+        $intersections = array_intersect_key($panel[0], $panel[1]);
+        $posKeys = array_keys($intersections);
 
-        $calculatedSteps = [];
-
-        foreach ($intersections as $intersection) {
-            $calculatedSteps[] =
-                $panel[$intersection[0]][$intersection[1]]['steps0']
-                + $panel[$intersection[0]][$intersection[1]]['steps1'];
+        $steps = [];
+        foreach ($posKeys as $posKey) {
+            $steps[] = $panel[0][$posKey] + $panel[1][$posKey];
         }
 
-        return min($calculatedSteps);
+        return min($steps);
     }
 
-    public function getIntersections($wires): array
+    public function getPanel($wires): array
     {
         $panel = [];
         $xMoves = ['R' => 1, 'L' => -1, 'U' => 0, 'D' => 0];
         $yMoves = ['R' => 0, 'L' => 0, 'U' => 1, 'D' => -1];
-
-        $intersections = [];
 
         foreach ($wires as $id => $wire) {
             $posX = 0;
@@ -72,30 +69,11 @@ class Day03Solution extends SolutionBase
                     $posX += $xMoves[$direction];
                     $posY += $yMoves[$direction];
 
-                    if (isset($panel[$posX][$posY])
-                        && $panel[$posX][$posY]['wireId'] !== $id
-                        && $panel[$posX][$posY]['intersection'] !== true
-                    ) {
-                        $intersections[] = [$posX, $posY];
-                        $panel[$posX][$posY]['intersection'] = true;
-                        $panel[$posX][$posY]['steps' . $id] = ++$steps;
-                        $panel[$posX][$posY]['wireId'] = $id;
-
-                        continue;
-                    }
-
-                    $panel[$posX][$posY] = [
-                        'steps' . $id => ++$steps,
-                        'wireId' => $id,
-                        'intersection' => false,
-                    ];
+                    $panel[$id][$posX . ',' . $posY] = ++$steps;
                 }
             }
         }
 
-        return [
-            'intersections' => $intersections,
-            'panel' => $panel,
-        ];
+        return $panel;
     }
 }
