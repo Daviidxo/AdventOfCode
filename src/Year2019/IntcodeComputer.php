@@ -6,59 +6,137 @@ namespace Daviidxo\AdventOfCode\Year2019;
 
 class IntcodeComputer
 {
-    public function execute(array $data): array
+    /**
+     * @var array
+     */
+    protected $data = [];
+
+    public function getData(): array
     {
+        return $this->data;
+    }
+
+    public function setData(array $data): IntcodeComputer
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    public function execute(array $data, ?int $input = null): array
+    {
+        $this->setData($data);
+
         $i = 0;
         $outputs = [];
         while (true) {
-            $instructions = $this->parseInstruction((string) $data[$i]);
+            $instructions = $this->parseInstruction((string) $this->data[$i]);
             $opCode = (int) $instructions['opCode'];
-            if ($i > 1000) {
-                break;
-            }
+
             if ($opCode === 99) {
                 break;
             }
 
-            $firstParameter = $data[$i + 1];
+            if (!isset($this->data[$i + 1])) {
+                break;
+            }
+
+            $stepCount = 4;
 
             switch ($opCode) {
                 case 1:
-                    $secondParameter = $data[$i + 2];
-                    $thirdParameter = $data[$i + 3];
-                    $data[$thirdParameter] = $data[$firstParameter] + $data[$secondParameter];
+                    $firstParameter = $this->getParameter($i + 1, (int) $instructions['firstParameterMode']);
+                    $secondParameter = $this->getParameter($i + 2, (int) $instructions['secondParameterMode']);
+                    $thirdParameter = $this->data[$i + 3];
+                    $this->data[$thirdParameter] = $firstParameter + $secondParameter;
                     break;
                 case 2:
-                    $secondParameter = $data[$i + 2];
-                    $thirdParameter = $data[$i + 3];
-                    $data[$thirdParameter] = $data[$firstParameter] * $data[$secondParameter];
+                    $firstParameter = $this->getParameter($i + 1, (int) $instructions['firstParameterMode']);
+                    $secondParameter = $this->getParameter($i + 2, (int) $instructions['secondParameterMode']);
+                    $thirdParameter = $this->data[$i + 3];
+                    $this->data[$thirdParameter] = $firstParameter * $secondParameter;
                     break;
                 case 3:
-                    $input = 1;
-                    $data[$firstParameter] = $input;
+                    $firstParameter = $this->data[$i + 1];
+                    $this->data[$firstParameter] = $input;
+                    $stepCount = 2;
                     break;
                 case 4:
-                    $outputs[] = $data[$firstParameter];
+                    $firstParameter = $this->getParameter($i + 1, (int) $instructions['firstParameterMode']);
+                    $outputs[] = $firstParameter;
+                    $stepCount = 2;
+                    break;
+                case 5:
+                    $firstParameter = $this->getParameter($i + 1, (int) $instructions['firstParameterMode']);
+                    $secondParameter = $this->getParameter($i + 2, (int) $instructions['secondParameterMode']);
+                    if ($firstParameter !== 0) {
+                        $i = $secondParameter;
+                        continue 2;
+                    }
+                    $stepCount = 3;
+                    break;
+                case 6:
+                    $firstParameter = $this->getParameter($i + 1, (int) $instructions['firstParameterMode']);
+                    $secondParameter = $this->getParameter($i + 2, (int) $instructions['secondParameterMode']);
+                    if ($firstParameter === 0) {
+                        $i = $secondParameter;
+                        continue 2;
+                    }
+                    $stepCount = 3;
+                    break;
+                case 7:
+                    $firstParameter = $this->getParameter($i + 1, (int) $instructions['firstParameterMode']);
+                    $secondParameter = $this->getParameter($i + 2, (int) $instructions['secondParameterMode']);
+                    if ($firstParameter < $secondParameter) {
+                        $this->data[$this->data[$i + 3]] = 1;
+                        break;
+                    }
+                    $this->data[$this->data[$i + 3]] = 0;
+                    break;
+                case 8:
+                    $firstParameter = $this->getParameter($i + 1, (int) $instructions['firstParameterMode']);
+                    $secondParameter = $this->getParameter($i + 2, (int) $instructions['secondParameterMode']);
+                    if ($firstParameter === $secondParameter) {
+                        $this->data[$this->data[$i + 3]] = 1;
+                        break;
+                    }
+                    $this->data[$this->data[$i + 3]] = 0;
                     break;
             }
 
-            $i += count(array_filter($instructions)) !== 1 ? count($instructions) : 4;
+            $i += $stepCount;
+        }
+        
+        return [
+            'data' => $this->data,
+            'outputs' => empty($outputs) ? [] : max($outputs),
+        ];
+    }
+
+    public function getParameter(int $index, int $mode): ?int
+    {
+        $value = (int) $this->data[$index];
+
+        switch ($mode) {
+            case 0:
+                return (int) $this->data[$value];
+                break;
+            case 1:
+                return $value;
+                break;
         }
 
-        return [
-            'data' => $data,
-            'outputs' => $outputs,
-        ];
+        return null;
     }
 
     public function parseInstruction(string $instruction): array
     {
         $numbers = array_reverse(str_split($instruction));
+
         return [
-            'opCode' => isset($numbers[1]) ? $numbers[0] . $numbers[1] : $numbers[0],
-            'firstParameterMode' => $numbers[2] ?? null,
-            'secondParameterMode' => $numbers[3] ?? null,
-            'thirdParameterMode' => $numbers[4] ?? null,
+            'opCode' => ($numbers[1] ?? 0) . $numbers[0],
+            'firstParameterMode' => $numbers[2] ?? 0,
+            'secondParameterMode' => $numbers[3] ?? 0,
         ];
     }
 }
