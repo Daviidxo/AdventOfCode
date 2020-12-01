@@ -22,7 +22,7 @@ class Day02Solution extends SolutionBase
     {
         $data[1] = 12;
         $data[2] = 2;
-        $executedData = $this->executeIntcodeProgram($data);
+        $executedData = (new IntcodeComputer())->execute($data)['data'];
 
         return $executedData[0];
     }
@@ -34,7 +34,7 @@ class Day02Solution extends SolutionBase
                 $data[1] = $noun;
                 $data[2] = $verb;
 
-                $result = $this->executeIntcodeProgram($data);
+                $result = (new IntcodeComputer())->execute($data)['data'];
 
                 if ($result[0] === 19690720) {
                     return 100 * $noun + $verb;
@@ -43,33 +43,5 @@ class Day02Solution extends SolutionBase
         }
 
         return null;
-    }
-
-    public function executeIntcodeProgram(array $data): array
-    {
-        $i = 0;
-        while (true) {
-            $opCode = (int) $data[$i];
-            if ($opCode === 99) {
-                break;
-            }
-
-            $leftNumberPosition = $data[$i + 1];
-            $rightNumberPosition = $data[$i + 2];
-            $solutionPosition = $data[$i + 3];
-
-            switch ($opCode) {
-                case 1:
-                    $data[$solutionPosition] = $data[$leftNumberPosition] + $data[$rightNumberPosition];
-                    break;
-                case 2:
-                    $data[$solutionPosition] = $data[$leftNumberPosition] * $data[$rightNumberPosition];
-                    break;
-            }
-
-            $i += 4;
-        }
-
-        return $data;
     }
 }
