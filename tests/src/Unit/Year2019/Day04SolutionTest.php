@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Daviidxo\AdventOfCode\Tests\Unit;
+namespace Daviidxo\AdventOfCode\Tests\Unit\Year2019;
 
 use Daviidxo\AdventOfCode\Year2019\Day04Solution;
 use PHPUnit\Framework\TestCase;
@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Daviidxo\AdventOfCode\Year2019\Day04Solution<extended>
  */
-class Day04Test extends TestCase
+class Day04SolutionTest extends TestCase
 {
     public function casesGetSolution(): array
     {
