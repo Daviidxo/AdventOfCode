@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Daviidxo\AdventOfCode\Tests\Unit;
+namespace Daviidxo\AdventOfCode\Tests\Unit\Year2019;
 
 use Daviidxo\AdventOfCode\Year2019\Day01Solution;
 use PHPUnit\Framework\TestCase;
@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Daviidxo\AdventOfCode\Year2019\Day01Solution<extended>
  */
-class Day01Test extends TestCase
+class Day01SolutionTest extends TestCase
 {
     public function casesGetSolution(): array
     {
@@ -30,7 +30,6 @@ class Day01Test extends TestCase
      */
     public function testGetSolution(array $expected, string $input)
     {
-        var_dump($input);
         $actual = (new Day01Solution())->getSolution($input);
 
         static::assertSame($expected, $actual);
