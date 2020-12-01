@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Daviidxo\AdventOfCode\Year2019\Day05Solution<extended>
  */
-class Day05Test extends TestCase
+class Day05SolutionTest extends TestCase
 {
 
     public function casesGetSolution()
@@ -25,16 +25,16 @@ class Day05Test extends TestCase
             ],
         ];
     }
-//
-//    /**
-//     * @dataProvider casesGetSolution
-//     */
-//    public function testGetSolution(array $expected, string $input)
-//    {
-//        $actual = (new Day05Solution())->getSolution($input);
-//
-//        static::assertSame($expected, $actual);
-//    }
+
+    /**
+     * @dataProvider casesGetSolution
+     */
+    public function testGetSolution(array $expected, string $input)
+    {
+        $actual = (new Day05Solution())->getSolution($input);
+
+        static::assertSame($expected, $actual);
+    }
 
     public function casesGetTaskA()
     {
