@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace Daviidxo\AdventOfCode\Tests\Unit\Year2020;
 
-use Daviidxo\AdventOfCode\Year2020\Day01Solution;
+use Daviidxo\AdventOfCode\Year2020\Day02Solution;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Daviidxo\AdventOfCode\Year2020\Day01Solution<extended>
+ * @covers \Daviidxo\AdventOfCode\Year2020\Day02Solution<extended>
  */
-class Day01SolutionTest extends TestCase
+class Day02SolutionTest extends TestCase
 {
     public function casesGetSolution(): array
     {
         return [
             'Given input' => [
                 [
-                    'taskA' => 211899,
-                    'taskB' => 275765682,
+                    'taskA' => 458,
+                    'taskB' => 342,
                 ],
-                __DIR__ . '/../../../../input/Year2020/day01.txt',
+                __DIR__ . '/../../../../input/Year2020/day02.txt',
             ],
         ];
     }
@@ -30,7 +30,7 @@ class Day01SolutionTest extends TestCase
      */
     public function testGetSolution(array $expected, string $input)
     {
-        $actual = (new Day01Solution())->getSolution($input);
+        $actual = (new Day02Solution())->getSolution($input);
 
         static::assertSame($expected, $actual);
     }
@@ -38,19 +38,12 @@ class Day01SolutionTest extends TestCase
     public function casesGetTaskA(): array
     {
         return [
-            'Empty test' => [
-                0,
-                [],
-            ],
             'Simple test' => [
-                514579,
+                2,
                 [
-                    1721,
-                    979,
-                    366,
-                    299,
-                    675,
-                    1456,
+                    '1-3 a: abcde',
+                    '1-3 b: cdefg',
+                    '2-9 c: ccccccccc',
                 ],
             ],
         ];
@@ -61,7 +54,7 @@ class Day01SolutionTest extends TestCase
      */
     public function testGetTaskA(int $expected, array $input)
     {
-        $actual = (new Day01Solution())->getTaskA($input);
+        $actual = (new Day02Solution())->getTaskA($input);
 
         static::assertSame($expected, $actual);
     }
@@ -69,19 +62,12 @@ class Day01SolutionTest extends TestCase
     public function casesGetTaskB(): array
     {
         return [
-            'Empty test' => [
-                0,
-                [],
-            ],
             'Simple test' => [
-                241861950,
+                1,
                 [
-                    1721,
-                    979,
-                    366,
-                    299,
-                    675,
-                    1456,
+                    '1-3 a: abcde',
+                    '1-3 b: cdefg',
+                    '2-9 c: ccccccccc',
                 ],
             ],
         ];
@@ -92,7 +78,7 @@ class Day01SolutionTest extends TestCase
      */
     public function testGetTaskB(int $expected, array $input)
     {
-        $actual = (new Day01Solution())->getTaskB($input);
+        $actual = (new Day02Solution())->getTaskB($input);
 
         static::assertSame($expected, $actual);
     }
