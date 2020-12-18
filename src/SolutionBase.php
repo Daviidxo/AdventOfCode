@@ -6,5 +6,5 @@ namespace Daviidxo\AdventOfCode;
 
 abstract class SolutionBase
 {
-    abstract  public function getSolution(string $input): array;
+    abstract public function getSolution(string $input): array;
 }
