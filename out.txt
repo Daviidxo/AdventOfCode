@@ -1,0 +1,6 @@
+PHPUnit 9.4.1 by Sebastian Bergmann and contributors.
+
+Warning:       No code coverage driver available
+Warning:       Your XML configuration validates against a deprecated schema.
+Suggestion:    Migrate your XML configuration using "--migrate-configuration"!
+
