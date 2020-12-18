@@ -63,5 +63,4 @@ class Day05SolutionTest extends TestCase
 
         static::assertSame($expected, $actual);
     }
-
 }

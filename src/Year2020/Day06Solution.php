@@ -84,7 +84,6 @@ class Day06Solution extends SolutionBase
                     $count++;
                 }
             }
-
         }
 
         return $count;

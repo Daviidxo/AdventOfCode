@@ -39,7 +39,7 @@ class Day06SolutionTest extends TestCase
                 6,
                 [
                     'abcx|abcy|abcz',
-                ]
+                ],
             ],
             'Simple test 2' => [
                 11,
@@ -49,7 +49,7 @@ class Day06SolutionTest extends TestCase
                     'ab|ac',
                     'a|a|a|a',
                     'b',
-                ]
+                ],
             ],
         ];
     }
@@ -75,7 +75,7 @@ class Day06SolutionTest extends TestCase
                     'ab|ac',
                     'a|a|a|a',
                     'b',
-                ]
+                ],
             ],
         ];
     }
