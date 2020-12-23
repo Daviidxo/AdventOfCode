@@ -27,7 +27,7 @@ class Day02Solution extends SolutionBase
         return $executedData[0];
     }
 
-    public function getTaskB(array $data): ?int
+    public function getTaskB(array $data): int
     {
         for ($noun = 0; $noun < 100; $noun++) {
             for ($verb = 0; $verb < 100; $verb++) {
@@ -42,6 +42,6 @@ class Day02Solution extends SolutionBase
             }
         }
 
-        return null;
+        return 0;
     }
 }

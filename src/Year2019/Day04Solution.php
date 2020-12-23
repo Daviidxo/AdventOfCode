@@ -11,17 +11,17 @@ class Day04Solution extends SolutionBase
     public function getSolution(string $input): array
     {
         $data = explode('-', file_get_contents($input));
-        $min = (int) $data[0];
-        $max = (int) $data[1];
 
         return [
-            'taskA' => $this->getTaskA($min, $max),
-            'taskB' => $this->getTaskB($min, $max),
+            'taskA' => $this->getTaskA($data),
+            'taskB' => $this->getTaskB($data),
         ];
     }
 
-    public function getTaskA(int $min, int $max): int
+    public function getTaskA(array $data): int
     {
+        $min = (int) $data[0];
+        $max = (int) $data[1];
         $possibilities = 0;
 
         for ($i = $min; $i <= $max; $i++) {
@@ -31,8 +31,10 @@ class Day04Solution extends SolutionBase
         return $possibilities;
     }
 
-    public function getTaskB(int $min, int $max): Int
+    public function getTaskB(array $data): Int
     {
+        $min = (int) $data[0];
+        $max = (int) $data[1];
         $possibilities = 0;
 
         for ($i = $min; $i <= $max; $i++) {

@@ -15,7 +15,7 @@ class Day09SolutionTest extends TestCase
             'Given input' => [
                 [
                     'taskA' => 29221323,
-                    'taskB' => 0,
+                    'taskB' => 4389369,
                 ],
                 __DIR__ . '/../../../../input/Year2020/day09.txt',
             ],
