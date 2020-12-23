@@ -22,7 +22,7 @@ class Day11Solution extends SolutionBase
             [1,  +1],
     ];
 
-    public function getSolution(string $input): array
+    protected function parseFile(string $input): array
     {
         $fp = fopen($input, 'r');
 
@@ -40,10 +40,7 @@ class Day11Solution extends SolutionBase
             $j = 0;
         }
 
-        return [
-            'taskA' => $this->getTaskA($data),
-            'taskB' => $this->getTaskB($data),
-        ];
+        return $data;
     }
 
     public function getTaskA(array $data): int

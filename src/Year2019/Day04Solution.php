@@ -8,14 +8,10 @@ use Daviidxo\AdventOfCode\SolutionBase;
 
 class Day04Solution extends SolutionBase
 {
-    public function getSolution(string $input): array
-    {
-        $data = explode('-', file_get_contents($input));
 
-        return [
-            'taskA' => $this->getTaskA($data),
-            'taskB' => $this->getTaskB($data),
-        ];
+    protected function parseFile(string $input): array
+    {
+        return explode('-', file_get_contents($input));
     }
 
     public function getTaskA(array $data): int

@@ -8,20 +8,6 @@ use Daviidxo\AdventOfCode\SolutionBase;
 
 class Day01Solution extends SolutionBase
 {
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSolution(string $input): array
-    {
-        $data = file($input, FILE_IGNORE_NEW_LINES);
-
-        return [
-            'taskA' => $this->getTaskA($data),
-            'taskB' => $this->getTaskB($data),
-        ];
-    }
-
     public function getTaskA(array $data): int
     {
         $fuel = 0;
