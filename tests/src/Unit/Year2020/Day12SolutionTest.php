@@ -14,8 +14,8 @@ class Day12SolutionTest extends TestCase
         return [
             'Given input' => [
                 [
-                    'taskA' => 0,
-                    'taskB' => 0,
+                    'taskA' => 1565,
+                    'taskB' => 78883,
                 ],
                 __DIR__ . '/../../../../input/Year2020/day12.txt',
             ],
@@ -54,6 +54,32 @@ class Day12SolutionTest extends TestCase
     public function testGetTaskA(int $expected, array $data)
     {
         $actual = (new Day12Solution())->getTaskA($data);
+
+        static::assertSame($expected, $actual);
+    }
+
+    public function casesTestGetTaskB(): array
+    {
+        return [
+            'Simple input' => [
+                286,
+                [
+                    'F10',
+                    'N3',
+                    'F7',
+                    'R90',
+                    'F11',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider casesTestGetTaskB
+     */
+    public function testGetTaskB(int $expected, array $data)
+    {
+        $actual = (new Day12Solution())->getTaskB($data);
 
         static::assertSame($expected, $actual);
     }
