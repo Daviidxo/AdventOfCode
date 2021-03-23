@@ -8,14 +8,10 @@ use Daviidxo\AdventOfCode\SolutionBase;
 
 class Day02Solution extends SolutionBase
 {
-    public function getSolution(string $input): array
-    {
-        $data = explode(',', file_get_contents($input));
 
-        return [
-            'taskA' => $this->getTaskA($data),
-            'taskB' => $this->getTaskB($data),
-        ];
+    protected function parseFile(string $input): array
+    {
+        return explode(',', file_get_contents($input));
     }
 
     public function getTaskA(array $data): int
@@ -27,7 +23,7 @@ class Day02Solution extends SolutionBase
         return $executedData[0];
     }
 
-    public function getTaskB(array $data): ?int
+    public function getTaskB(array $data): int
     {
         for ($noun = 0; $noun < 100; $noun++) {
             for ($verb = 0; $verb < 100; $verb++) {
@@ -42,6 +38,6 @@ class Day02Solution extends SolutionBase
             }
         }
 
-        return null;
+        return 0;
     }
 }

@@ -8,20 +8,8 @@ use Daviidxo\AdventOfCode\SolutionBase;
 
 class Day04Solution extends SolutionBase
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getSolution(string $input): array
-    {
-        $data = $this->parseInput($input);
 
-        return [
-            'taskA' => $this->getTaskA($data),
-            'taskB' => $this->getTaskB($data),
-        ];
-    }
-
-    public function parseInput(string $input)
+    protected function parseFile(string $input): array
     {
         $data = [];
         $contents = file($input, FILE_IGNORE_NEW_LINES);
