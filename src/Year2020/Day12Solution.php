@@ -126,5 +126,4 @@ class Day12Solution extends SolutionBase
 
         return abs($shipPosition['E']) + abs($shipPosition['N']);
     }
-
 }
