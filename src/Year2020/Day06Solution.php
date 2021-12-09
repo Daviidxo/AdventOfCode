@@ -8,12 +8,12 @@ use Daviidxo\AdventOfCode\SolutionBase;
 
 class Day06Solution extends SolutionBase
 {
-    public function parseFile(string $input): array
+    protected function parseFile(string $input): array
     {
         $contents = file($input, FILE_IGNORE_NEW_LINES);
         $data = array_fill(0, count($contents), null);
         $index = 0;
-        foreach ($contents as $i => $line) {
+        foreach ($contents as $line) {
             if (!$line) {
                 $index++;
             }
