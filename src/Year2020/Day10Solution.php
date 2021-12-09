@@ -74,5 +74,4 @@ class Day10Solution extends SolutionBase
 
         return $count;
     }
-
 }
