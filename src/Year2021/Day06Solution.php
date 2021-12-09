@@ -50,7 +50,8 @@ class Day06Solution extends SolutionBase
         return array_sum($fish);
     }
 
-    protected function iterateFish(array &$fish) {
+    protected function iterateFish(array &$fish)
+    {
         $born = reset($fish);
         unset($fish[0]);
         $fish = array_values($fish);

@@ -50,7 +50,8 @@ class Day05Solution extends SolutionBase
         return $this->countOverlaps($map);
     }
 
-    protected function createMap(array $data): array {
+    protected function createMap(array $data): array
+    {
         $maxX1 = $this->getMax($data, 'x1');
         $maxX2 = $this->getMax($data, 'x2');
         $maxY1 = $this->getMax($data, 'y1');
@@ -118,7 +119,8 @@ class Day05Solution extends SolutionBase
         }
     }
 
-    protected function getCoordinates(array $data) {
+    protected function getCoordinates(array $data)
+    {
         $coords = [];
         foreach ($data as $row) {
             if ($row['x1'] < $row['x2']) {
@@ -150,7 +152,8 @@ class Day05Solution extends SolutionBase
         return $coords;
     }
 
-    protected function countOverlaps(array $map): int {
+    protected function countOverlaps(array $map): int
+    {
         $count = 0;
 
         foreach ($map as $row) {

@@ -47,7 +47,8 @@ class Day07Solution extends SolutionBase
         return $fuel;
     }
 
-    protected function getMedian(array $data): int {
+    protected function getMedian(array $data): int
+    {
         sort($data);
         $count = count($data);
 
@@ -56,7 +57,11 @@ class Day07Solution extends SolutionBase
             : ($data[floor($count / 2)] + $data[ceil($count / 2)]) / 2;
     }
 
-    protected function getAverage(array $data): int {
+    protected function getAverage(array $data): int
+    {
+        //@todo Revise this part.
+        //This does not work with the given test data for some reason.
+        //Using round() fails for my input.
         return (int) floor(array_sum($data) / count($data));
     }
 }

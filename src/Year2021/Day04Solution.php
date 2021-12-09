@@ -32,7 +32,7 @@ class Day04Solution extends SolutionBase
             }
 
             $boardLine = explode(' ', $file[$i]);
-            $boardLine = array_filter($boardLine, function($a) {
+            $boardLine = array_filter($boardLine, function ($a) {
                 return $a !== '';
             });
             $boardLine = array_values($boardLine);
@@ -107,10 +107,11 @@ class Day04Solution extends SolutionBase
         return 0;
     }
 
-    protected function createWinBoard(): array {
+    protected function createWinBoard(): array
+    {
         $board = [];
         for ($i = 0; $i < 5; $i++) {
-           $board[] = array_fill(0, 5, false);
+            $board[] = array_fill(0, 5, false);
         }
 
         return $board;
@@ -119,13 +120,13 @@ class Day04Solution extends SolutionBase
     protected function isBoardWon(array $board): bool
     {
         foreach ($board as $boardLine) {
-             foreach ($boardLine as $lineNum) {
-                 if (!$lineNum) {
-                     continue 2;
-                 }
-             }
+            foreach ($boardLine as $lineNum) {
+                if (!$lineNum) {
+                    continue 2;
+                }
+            }
 
-             return true;
+            return true;
         }
 
         for ($i = 0; $i < count($board); $i++) {
@@ -141,7 +142,8 @@ class Day04Solution extends SolutionBase
         return false;
     }
 
-    protected function calculateScore(array $board, array $winBoard, int $finalNumber): int {
+    protected function calculateScore(array $board, array $winBoard, int $finalNumber): int
+    {
         $score = 0;
 
         foreach ($board as $lineIndex => $boardLine) {
