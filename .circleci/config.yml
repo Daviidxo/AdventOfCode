@@ -6,7 +6,10 @@ jobs:
     steps:
       - checkout
       - run: sudo apt update
-      - run: sudo docker-php-ext-install gmp
+      - run: sudo apt install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
+      - run: ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+      - run: docker-php-ext-configure gmp
+      - run: docker-php-ext-install gmp
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "composer.json" }}
