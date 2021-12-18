@@ -81,8 +81,8 @@ class Day09Solution extends SolutionBase
                 $exists = 0;
 
                 foreach ($this->directions as $dir) {
-                    $check = $data[$i + $dir[0]][$j + $dir[1]] ?? NULL;
-                    if ($check === NULL) {
+                    $check = $data[$i + $dir[0]][$j + $dir[1]] ?? null;
+                    if ($check === null) {
                         continue;
                     }
 
@@ -116,8 +116,8 @@ class Day09Solution extends SolutionBase
                 continue;
             }
 
-            $check = $data[$ii][$jj] ?? NULL;
-            if ($check === NULL || $check == 9) {
+            $check = $data[$ii][$jj] ?? null;
+            if ($check === null || $check == 9) {
                 continue;
             }
 
@@ -127,5 +127,4 @@ class Day09Solution extends SolutionBase
 
         return $usedValuesMap;
     }
-
 }

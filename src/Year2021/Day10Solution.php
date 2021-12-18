@@ -94,7 +94,7 @@ class Day10Solution extends SolutionBase
             unset($expectedNextClosing[array_key_last($expectedNextClosing)]);
         }
 
-        return NULL;
+        return null;
     }
 
     protected function getAutocompleteChars(array $chars): array
