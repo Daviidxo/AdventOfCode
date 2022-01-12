@@ -63,7 +63,7 @@ class Day13Solution extends SolutionBase
         }
         // Unlike other days this needs a string solution,
         // which can be read by outputting this array so printing is necessary.
-        $this->printPaper($paper);
+        // $this->printPaper($paper);
 
         return $this->countDots($paper);
     }
