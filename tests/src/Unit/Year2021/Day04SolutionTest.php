@@ -34,6 +34,13 @@ class Day04SolutionTest extends TestCase
     public function casesGetTaskA(): array
     {
         return [
+            'Empty test' => [
+                0,
+                [
+                    'numbers' => [],
+                    'boards' => [],
+                ],
+            ],
             'Simple test' => [
                 4512,
                 [
@@ -82,6 +89,13 @@ class Day04SolutionTest extends TestCase
     public function casesGetTaskB(): array
     {
         return [
+            'Empty test' => [
+                0,
+                [
+                    'numbers' => [],
+                    'boards' => [],
+                ],
+            ],
             'Simple test' => [
                 1924,
                 [

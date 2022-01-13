@@ -14,10 +14,6 @@ class Day01Solution extends SolutionBase
     {
         $increased = 0;
         for ($i = 1; $i < count($data); $i++) {
-            if (!isset($data[$i - 1])) {
-                continue;
-            }
-
             $increased += $data[$i] - $data[$i - 1] > 0 ? 1 : 0;
         }
 

@@ -12,7 +12,6 @@ class Day04Solution extends SolutionBase
     protected function parseFile(string $input): array
     {
         $data = [
-            'numbers' => [],
             'boards' => [],
         ];
         $file = file($input);
