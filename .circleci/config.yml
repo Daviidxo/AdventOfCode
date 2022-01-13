@@ -2,23 +2,26 @@ version: 2
 jobs:
   php704_test:
     docker:
-      - image: circleci/php:7.4-node-browsers
+      - image: circleci/php:7.4
     steps:
       - checkout
       - run: sudo apt update
       - run: sudo apt install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
-      - run: ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
-      - run: docker-php-ext-configure gmp
-      - run: docker-php-ext-install gmp
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
-      - run: composer install -n --prefer-dist
-      - save_cache:
-          key: v1-dependencies-{{ checksum "composer.json" }}
-          paths:
-            - ./vendor
+      - run: sudo docker-php-ext-configure gmp
+      - run: sudo docker-php-ext-install gmp
+      - run: composer install --no-interaction --ignore-platform-reqs
+      - run: ./bin/phpcs
+      - run: ./bin/phpunit
+  php800_test:
+    docker:
+      - image: circleci/php:8.0
+    steps:
+      - checkout
+      - run: sudo apt update
+      - run: sudo apt install -y libgmp-dev re2c libmhash-dev libmcrypt-dev file
+      - run: sudo docker-php-ext-configure gmp
+      - run: sudo docker-php-ext-install gmp
+      - run: composer install --no-interaction --ignore-platform-reqs
       - run: ./bin/phpcs
       - run: ./bin/phpunit
 
@@ -27,3 +30,6 @@ workflows:
   php704_test:
     jobs:
       - php704_test
+  php800_test:
+    jobs:
+      - php800_test

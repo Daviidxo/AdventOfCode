@@ -31,7 +31,7 @@ class Day03Solution extends SolutionBase
         $manhattans = [];
         foreach ($intersections as $key => $intersection) {
             $positions = explode(',', $key);
-            $manhattans[] = abs($positions[0]) + abs($positions[1]);
+            $manhattans[] = abs((int) $positions[0]) + abs((int) $positions[1]);
         }
 
         return min($manhattans);
