@@ -73,7 +73,7 @@ class Day01SolutionTest extends TestCase
     {
         $actual = (new Day01Solution())->getTaskA($input);
 
-        return static::assertSame($expected, $actual);
+        static::assertSame($expected, $actual);
     }
 
     public function casesGetTaskB(): array
@@ -118,6 +118,6 @@ class Day01SolutionTest extends TestCase
     {
         $actual = (new Day01Solution())->getTaskB($input);
 
-        return static::assertSame($expected, $actual);
+        static::assertSame($expected, $actual);
     }
 }

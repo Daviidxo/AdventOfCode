@@ -1,3 +1,4 @@
 [Bb]in/
 /vendor/
 /reports/
+.phpunit.result.cache
